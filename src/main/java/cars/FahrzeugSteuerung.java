@@ -53,10 +53,11 @@ public abstract class FahrzeugSteuerung {
     public void umfahren() {
         stoppen();
         linksAbbiegen();
+        vorwärtsFahren(500);
         rechtsAbbiegen();
-        vorwärtsFahren();
-        Delay.msDelay(500);
+        vorwärtsFahren(2000);
         rechtsAbbiegen();
+        vorwärtsFahren(500);
         linksAbbiegen();
     }
 

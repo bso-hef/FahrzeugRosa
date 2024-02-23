@@ -5,35 +5,36 @@ import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 
 public class Fahrzeug1Blau extends FahrzeugSteuerung {
-    private EV3LargeRegulatedMotor motorAntrieb = new EV3LargeRegulatedMotor(MotorPort.B);
-    private EV3MediumRegulatedMotor motorLenkung = new EV3MediumRegulatedMotor(MotorPort.C);
+    private EV3LargeRegulatedMotor motorAntrieb;
+    private EV3MediumRegulatedMotor motorLenkung;
     private double geschwindigkeit = GESCHWINDIGKEIT;
 
     public Fahrzeug1Blau(){
-        motorAntrieb.setSpeed(100);
+        motorAntrieb = new EV3LargeRegulatedMotor(MotorPort.B);
+        motorLenkung = new EV3MediumRegulatedMotor(MotorPort.C);
     }
 
     @Override
     public void vorwärtsFahren() {
-        motorAntrieb.forward();
-    }
-
-    @Override
-    public void rückwärtsFahren() {
         motorAntrieb.backward();
     }
 
     @Override
+    public void rückwärtsFahren() {
+        motorAntrieb.forward();
+    }
+
+    @Override
     public void linksAbbiegen() {
-        motorLenkung.rotateTo(10);
-        motorAntrieb.rotate(495);
+        motorLenkung.rotateTo(60);
+        motorAntrieb.rotate(-700);
         motorLenkung.rotateTo(0);
     }
 
     @Override
     public void rechtsAbbiegen() {
-        motorLenkung.rotateTo(-10);
-        motorAntrieb.rotate(495);
+        motorLenkung.rotateTo(-60);
+        motorAntrieb.rotate(-700);
         motorLenkung.rotateTo(0);
     }
 
